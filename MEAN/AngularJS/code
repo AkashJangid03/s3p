@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Information</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+
+    <h2>Student Information</h2>
+
+    <p>Student Name: {{name}}</p>
+    <p>Roll Number: {{rollno}}</p>
+    <p>Course: {{course}}</p>
+    <p>College Name: {{college}}</p>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("myCtrl", function($scope) {
+            $scope.name = "Aakash";
+            $scope.rollno = 101;
+            $scope.course = "M.Sc. Computer Applications";
+            $scope.college = "Fergusson College";
+        });
+    </script>
+
+</body>
+</html>

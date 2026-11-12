@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <script src="https://ajax/googleapis.com/ajax/libs/angluarjs/1.8.2/angluar.min.js"></script>
+    <style>
+        body {}
+    </style>
+</head>
+<body ng-app="shopApp" ng-controller="shopCtrl">
+    <div class="container">
+        <h2>Shooping Cart</h2>
+        <h3>Available Products</h3>
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Priec</th>
+                <th>Action</th>
+            </tr>
+            <tr ng-repeat="item in cart">
+                <td>{{item.name}}</td>
+                <td>{{item.price}}</td>
+                <td>
+                    <button class="remove" ng-click="remove(item)"></button>
+                </td>
+            </tr>
+        </table>
+        <div class="total">Total Bill: {{getTotal()}}</div>
+    </div>
+
+    <script>
+        var app = angluar.module("shopApp", []);
+        app.controller("shopCtrl", function($scope) {
+            
+            $scope.products = [
+                {name: "Laptop", price: 50000}, 
+                {name: "Mobile", price: 30000}, 
+                {name: "Keyboard", price: 5000}, 
+                {name: "Mouse", price: 500}, 
+                {name: "Headphone", price: 1000}, 
+                {name: "RAM", price: 5000}
+            ];
+
+            $scope.cart = [];
+
+            $scope.addToCart = function(prodcut) {
+                var found = false;
+
+                angular.forEach($scope.cart, function(item) {
+                    if(item.name == product.name) {
+                        item.qty++;
+                        found = true;
+                    }
+                });
+
+                if (!found) {
+                    $scope.cart.push({
+                        name: product.name, 
+                        price: product.price, 
+                        qty: 1
+                    });
+                }
+            };
+
+            $scope.increase = function(item) {
+                item.qty++;
+            };
+
+            $scope.decrease = function(itme) {
+                if (item.qty > 1) {
+                    item.qty--;
+                }
+            };
+
+            $scope.remove = function(item) {
+                var index = $scope.cart.indexOf(item);
+                $scope.cart.splice(index, 1);
+            };
+        });
+    </script>
+</body>
+</html>
